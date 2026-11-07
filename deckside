@@ -1,0 +1,110 @@
+#!/bin/bash
+# deckside - manage the Deckside background service on this Mac.
+set -uo pipefail
+
+HOME_DIR="$HOME/.deckside"
+LABEL="com.deckside.server"
+DOMAIN="gui/$(id -u)"
+PORT="$(cat "$HOME_DIR/port" 2>/dev/null || echo 8765)"
+REPO="$(cat "$HOME_DIR/repo" 2>/dev/null || echo aalharthi977/deckside)"
+
+bold() { printf '\033[1m%s\033[0m\n' "$*"; }
+token() { tr -d '[:space:]' < "$HOME_DIR/token.txt" 2>/dev/null; }
+healthy() { curl -fs --max-time 2 "http://127.0.0.1:$PORT/healthz" 2>/dev/null | grep -q deckside; }
+
+# The Mac's network name (works when the router hands out a new IP) and its current IP as a fallback.
+host_name() { local n; n="$(scutil --get LocalHostName 2>/dev/null)"; [ -n "$n" ] && printf '%s.local' "$n"; }
+lan_ip() {
+  local ifc ip
+  ifc="$(route -n get default 2>/dev/null | awk '/interface:/ {print $2}')"
+  [ -n "$ifc" ] && ip="$(ipconfig getifaddr "$ifc" 2>/dev/null)"
+  [ -z "${ip:-}" ] && ip="$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null)"
+  printf '%s' "${ip:-}"
+}
+qr() {
+  local q=""
+  for c in "$(command -v qrencode 2>/dev/null || true)" /opt/homebrew/bin/qrencode /usr/local/bin/qrencode; do
+    [ -n "$c" ] && [ -x "$c" ] && { q="$c"; break; }
+  done
+  if [ -n "$q" ]; then "$q" -t ansiutf8 -m 2 "$1"; else echo "    (Install qrencode for a scannable code:  brew install qrencode)"; fi
+}
+
+cmd_pair() {
+  local t h ip url
+  t="$(token)"; [ -n "$t" ] || { echo "No token yet - is Deckside installed? Run the installer."; exit 1; }
+  h="$(host_name)"; ip="$(lan_ip)"
+  url="http://${h:-$ip}:$PORT/?token=$t"
+  echo
+  bold "  Scan with the iPad or phone camera (same Wi-Fi as this Mac):"
+  echo
+  qr "$url"
+  echo
+  echo "  Or open:   $url"
+  if [ -n "$h" ] && [ -n "$ip" ]; then
+    echo "  If that name doesn't load on your network, use:  http://$ip:$PORT/?token=$t"
+  fi
+  echo
+  echo "  Then tap Share → Add to Home Screen, so it opens full screen like an app."
+  echo
+}
+
+cmd_status() {
+  if healthy; then
+    local v; v="$(curl -fs "http://127.0.0.1:$PORT/healthz" | sed -n 's/.*"version": *"\([^"]*\)".*/\1/p')"
+    echo "Deckside $v is running on port $PORT."
+    echo "Panel:  http://$(host_name || lan_ip):$PORT"
+  else
+    echo "Deckside is not responding on port $PORT."
+    launchctl print "$DOMAIN/$LABEL" >/dev/null 2>&1 && echo "The service is loaded; see:  deckside logs" \
+      || echo "The service isn't loaded. Start it with:  deckside start"
+    exit 1
+  fi
+}
+
+cmd_start()   { launchctl bootstrap "$DOMAIN" "$HOME/Library/LaunchAgents/$LABEL.plist" 2>/dev/null || launchctl kickstart "$DOMAIN/$LABEL"; sleep 1; cmd_status; }
+cmd_stop()    { launchctl bootout "$DOMAIN/$LABEL" 2>/dev/null && echo "Stopped. (It starts again at login; 'deckside start' to start now.)"; }
+cmd_restart() { launchctl kickstart -k "$DOMAIN/$LABEL" && sleep 1 && cmd_status; }
+cmd_logs()    { tail -n 50 -f "$HOME_DIR/logs/server.log"; }
+cmd_open()    { open "http://127.0.0.1:$PORT/?token=$(token)"; }
+
+cmd_new_token() {
+  ( umask 077; "$(command -v python3 || echo /usr/bin/python3)" -c 'import secrets; print(secrets.token_urlsafe(12))' > "$HOME_DIR/token.txt" )
+  launchctl kickstart -k "$DOMAIN/$LABEL" >/dev/null 2>&1; sleep 1
+  echo "New token made. Devices paired before need the new link:"
+  cmd_pair
+}
+
+cmd_update()    { curl -fsSL "https://raw.githubusercontent.com/$REPO/main/install.sh" | DECKSIDE_REPO="$REPO" DECKSIDE_PORT="$PORT" bash; }
+cmd_uninstall() { bash "$HOME_DIR/uninstall.sh" "$@"; }
+
+usage() {
+  cat <<EOF
+deckside - control your Mac from a spare iPad or phone
+
+  deckside pair         show the link and QR code to open on the iPad or phone
+  deckside status       is it running?
+  deckside restart      restart the background service
+  deckside start|stop   start or stop it (it always starts again at login)
+  deckside logs         follow the log
+  deckside open         open the panel on this Mac
+  deckside new-token    make a new token (un-pairs every device)
+  deckside update       install the latest version (keeps your buttons and token)
+  deckside uninstall    remove Deckside (add --keep-settings to keep your buttons)
+EOF
+}
+
+case "${1:-}" in
+  pair) cmd_pair ;;
+  status) cmd_status ;;
+  start) cmd_start ;;
+  stop) cmd_stop ;;
+  restart) cmd_restart ;;
+  logs) cmd_logs ;;
+  open) cmd_open ;;
+  new-token) cmd_new_token ;;
+  update) cmd_update ;;
+  uninstall) shift; cmd_uninstall "$@" ;;
+  version|--version|-v) cat "$HOME_DIR/app/server.py" | sed -n 's/^VERSION = "\(.*\)"/\1/p' ;;
+  ""|help|-h|--help) usage ;;
+  *) echo "Unknown command: $1"; echo; usage; exit 1 ;;
+esac

@@ -1,0 +1,548 @@
+{
+ "_note": "Starter 'in front' buttons, added on first run for apps that are installed. Keys are bundle ids; a key also matches versioned ids that start with it (e.g. com.adobe.PremierePro.26).",
+ "profiles": {
+  "company.thebrowser.dia": {
+   "app": "Dia",
+   "buttons": [
+    {
+     "label": "New tab",
+     "combo": "cmd+t"
+    },
+    {
+     "label": "Reopen tab",
+     "combo": "shift+cmd+t"
+    },
+    {
+     "label": "Close tab",
+     "combo": "cmd+w"
+    },
+    {
+     "label": "Back",
+     "combo": "cmd+["
+    },
+    {
+     "label": "Forward",
+     "combo": "cmd+]"
+    },
+    {
+     "label": "Reload",
+     "combo": "cmd+r"
+    },
+    {
+     "label": "Command bar",
+     "combo": "cmd+l"
+    },
+    {
+     "label": "Find",
+     "combo": "cmd+f"
+    },
+    {
+     "label": "Chat",
+     "combo": "cmd+e"
+    },
+    {
+     "label": "Bookmark",
+     "combo": "cmd+d"
+    },
+    {
+     "label": "Private window",
+     "combo": "shift+cmd+n"
+    },
+    {
+     "label": "Dev tools",
+     "combo": "opt+cmd+i"
+    }
+   ]
+  },
+  "com.adobe.PremierePro": {
+   "app": "Adobe Premiere Pro",
+   "buttons": [
+    {
+     "label": "Save",
+     "combo": "cmd+s"
+    },
+    {
+     "label": "Undo",
+     "combo": "cmd+z"
+    },
+    {
+     "label": "Redo",
+     "combo": "shift+cmd+z"
+    },
+    {
+     "label": "Cut here",
+     "combo": "cmd+k"
+    },
+    {
+     "label": "Cut all tracks",
+     "combo": "shift+cmd+k"
+    },
+    {
+     "label": "Ripple delete",
+     "combo": "shift+forwarddelete"
+    },
+    {
+     "label": "Trim to left",
+     "combo": "q"
+    },
+    {
+     "label": "Trim to right",
+     "combo": "w"
+    },
+    {
+     "label": "Marker",
+     "combo": "m"
+    },
+    {
+     "label": "Speed",
+     "combo": "cmd+r"
+    },
+    {
+     "label": "Import",
+     "combo": "cmd+i"
+    },
+    {
+     "label": "Export",
+     "combo": "cmd+m"
+    }
+   ]
+  },
+  "com.anthropic.claudefordesktop": {
+   "app": "Claude",
+   "buttons": [
+    {
+     "label": "New chat",
+     "combo": "shift+cmd+o"
+    },
+    {
+     "label": "Sidebar",
+     "combo": "shift+cmd+s"
+    },
+    {
+     "label": "Search",
+     "combo": "cmd+k"
+    },
+    {
+     "label": "Focus input",
+     "combo": "shift+cmd+;"
+    },
+    {
+     "label": "Copy reply",
+     "combo": "shift+cmd+c"
+    },
+    {
+     "label": "Settings",
+     "combo": "cmd+,"
+    },
+    {
+     "label": "Zoom in",
+     "combo": "cmd+="
+    },
+    {
+     "label": "Zoom out",
+     "combo": "cmd+-"
+    },
+    {
+     "label": "Actual size",
+     "combo": "cmd+0"
+    },
+    {
+     "label": "Reload",
+     "combo": "cmd+r"
+    }
+   ]
+  },
+  "com.bitwarden.desktop": {
+   "app": "Bitwarden",
+   "buttons": [
+    {
+     "label": "Search",
+     "combo": "cmd+f"
+    },
+    {
+     "label": "Copy user",
+     "combo": "cmd+u"
+    },
+    {
+     "label": "Copy password",
+     "combo": "cmd+p"
+    },
+    {
+     "label": "Copy code",
+     "combo": "cmd+t"
+    },
+    {
+     "label": "Generator",
+     "combo": "cmd+g"
+    },
+    {
+     "label": "New login",
+     "combo": "cmd+n"
+    },
+    {
+     "label": "Lock",
+     "combo": "cmd+l"
+    },
+    {
+     "label": "Always on top",
+     "combo": "shift+cmd+t"
+    },
+    {
+     "label": "Settings",
+     "combo": "cmd+,"
+    }
+   ]
+  },
+  "com.hnc.Discord": {
+   "app": "Discord",
+   "buttons": [
+    {
+     "label": "Mute",
+     "combo": "shift+cmd+m"
+    },
+    {
+     "label": "Deafen",
+     "combo": "shift+cmd+d"
+    },
+    {
+     "label": "Quick switch",
+     "combo": "cmd+k"
+    },
+    {
+     "label": "Prev channel",
+     "combo": "opt+up"
+    },
+    {
+     "label": "Next channel",
+     "combo": "opt+down"
+    },
+    {
+     "label": "Search",
+     "combo": "cmd+f"
+    },
+    {
+     "label": "Inbox",
+     "combo": "shift+cmd+i"
+    },
+    {
+     "label": "Upload",
+     "combo": "shift+cmd+u"
+    },
+    {
+     "label": "Emoji",
+     "combo": "cmd+e"
+    },
+    {
+     "label": "Members",
+     "combo": "cmd+u"
+    },
+    {
+     "label": "Pins",
+     "combo": "cmd+p"
+    },
+    {
+     "label": "Mark read",
+     "combo": "escape"
+    }
+   ]
+  },
+  "com.apple.Safari": {
+   "app": "Safari",
+   "buttons": [
+    {
+     "label": "New tab",
+     "combo": "cmd+t"
+    },
+    {
+     "label": "Reopen tab",
+     "combo": "shift+cmd+t"
+    },
+    {
+     "label": "Close tab",
+     "combo": "cmd+w"
+    },
+    {
+     "label": "Back",
+     "combo": "cmd+["
+    },
+    {
+     "label": "Forward",
+     "combo": "cmd+]"
+    },
+    {
+     "label": "Reload",
+     "combo": "cmd+r"
+    },
+    {
+     "label": "Address bar",
+     "combo": "cmd+l"
+    },
+    {
+     "label": "Find",
+     "combo": "cmd+f"
+    },
+    {
+     "label": "Sidebar",
+     "combo": "shift+cmd+l"
+    },
+    {
+     "label": "Bookmark",
+     "combo": "cmd+d"
+    },
+    {
+     "label": "Private window",
+     "combo": "shift+cmd+n"
+    },
+    {
+     "label": "Reader",
+     "combo": "shift+cmd+r"
+    }
+   ]
+  },
+  "com.google.Chrome": {
+   "app": "Google Chrome",
+   "buttons": [
+    {
+     "label": "New tab",
+     "combo": "cmd+t"
+    },
+    {
+     "label": "Reopen tab",
+     "combo": "shift+cmd+t"
+    },
+    {
+     "label": "Close tab",
+     "combo": "cmd+w"
+    },
+    {
+     "label": "Back",
+     "combo": "cmd+["
+    },
+    {
+     "label": "Forward",
+     "combo": "cmd+]"
+    },
+    {
+     "label": "Reload",
+     "combo": "cmd+r"
+    },
+    {
+     "label": "Address bar",
+     "combo": "cmd+l"
+    },
+    {
+     "label": "Find",
+     "combo": "cmd+f"
+    },
+    {
+     "label": "Downloads",
+     "combo": "shift+cmd+j"
+    },
+    {
+     "label": "Bookmark",
+     "combo": "cmd+d"
+    },
+    {
+     "label": "Incognito",
+     "combo": "shift+cmd+n"
+    },
+    {
+     "label": "Dev tools",
+     "combo": "opt+cmd+i"
+    }
+   ]
+  },
+  "com.apple.finder": {
+   "app": "Finder",
+   "buttons": [
+    {
+     "label": "New window",
+     "combo": "cmd+n"
+    },
+    {
+     "label": "New tab",
+     "combo": "cmd+t"
+    },
+    {
+     "label": "New folder",
+     "combo": "shift+cmd+n"
+    },
+    {
+     "label": "Go to folder",
+     "combo": "shift+cmd+g"
+    },
+    {
+     "label": "Downloads",
+     "combo": "opt+cmd+l"
+    },
+    {
+     "label": "Desktop",
+     "combo": "shift+cmd+d"
+    },
+    {
+     "label": "Documents",
+     "combo": "shift+cmd+o"
+    },
+    {
+     "label": "Get info",
+     "combo": "cmd+i"
+    },
+    {
+     "label": "Hidden files",
+     "combo": "shift+cmd+."
+    },
+    {
+     "label": "Move to Trash",
+     "combo": "cmd+delete"
+    },
+    {
+     "label": "Back",
+     "combo": "cmd+["
+    },
+    {
+     "label": "Search",
+     "combo": "cmd+f"
+    }
+   ]
+  },
+  "us.zoom.xos": {
+   "app": "zoom.us",
+   "buttons": [
+    {
+     "label": "Mute",
+     "combo": "shift+cmd+a"
+    },
+    {
+     "label": "Video",
+     "combo": "shift+cmd+v"
+    },
+    {
+     "label": "Share screen",
+     "combo": "shift+cmd+s"
+    },
+    {
+     "label": "Raise hand",
+     "combo": "opt+y"
+    },
+    {
+     "label": "Chat",
+     "combo": "shift+cmd+h"
+    },
+    {
+     "label": "Participants",
+     "combo": "cmd+u"
+    },
+    {
+     "label": "Gallery view",
+     "combo": "shift+cmd+w"
+    },
+    {
+     "label": "Full screen",
+     "combo": "shift+cmd+f"
+    },
+    {
+     "label": "Leave",
+     "combo": "cmd+w"
+    }
+   ]
+  },
+  "com.tinyspeck.slackmacgap": {
+   "app": "Slack",
+   "buttons": [
+    {
+     "label": "Jump to",
+     "combo": "cmd+k"
+    },
+    {
+     "label": "All unreads",
+     "combo": "shift+cmd+a"
+    },
+    {
+     "label": "DMs",
+     "combo": "shift+cmd+k"
+    },
+    {
+     "label": "Threads",
+     "combo": "shift+cmd+t"
+    },
+    {
+     "label": "Search",
+     "combo": "cmd+g"
+    },
+    {
+     "label": "Back",
+     "combo": "cmd+["
+    },
+    {
+     "label": "Forward",
+     "combo": "cmd+]"
+    },
+    {
+     "label": "Mark read",
+     "combo": "escape"
+    },
+    {
+     "label": "Huddle",
+     "combo": "shift+cmd+h"
+    },
+    {
+     "label": "Preferences",
+     "combo": "cmd+,"
+    }
+   ]
+  },
+  "com.microsoft.VSCode": {
+   "app": "Visual Studio Code",
+   "buttons": [
+    {
+     "label": "Quick open",
+     "combo": "cmd+p"
+    },
+    {
+     "label": "Commands",
+     "combo": "shift+cmd+p"
+    },
+    {
+     "label": "Sidebar",
+     "combo": "cmd+b"
+    },
+    {
+     "label": "Terminal",
+     "combo": "ctrl+`"
+    },
+    {
+     "label": "Comment",
+     "combo": "cmd+/"
+    },
+    {
+     "label": "Format",
+     "combo": "shift+opt+f"
+    },
+    {
+     "label": "Find in files",
+     "combo": "shift+cmd+f"
+    },
+    {
+     "label": "Go to line",
+     "combo": "ctrl+g"
+    },
+    {
+     "label": "Save",
+     "combo": "cmd+s"
+    },
+    {
+     "label": "Split editor",
+     "combo": "cmd+\\"
+    },
+    {
+     "label": "Close editor",
+     "combo": "cmd+w"
+    },
+    {
+     "label": "Problems",
+     "combo": "shift+cmd+m"
+    }
+   ]
+  }
+ }
+}
